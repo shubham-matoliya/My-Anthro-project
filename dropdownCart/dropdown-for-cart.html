@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown menu</title>
+  </head>
+  <link rel="stylesheet" href="cart.css" />
+  <link rel="stylesheet" href="trialCard.css" />
+
+  <script
+    src="https://kit.fontawesome.com/45e6a363b2.js"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    /* @import url(“https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,300&display=swap”); */
+
+    body {
+      line-height: 1.5;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    ::before,
+    ::after {
+      box-sizing: border-box;
+    }
+    :root {
+      /* here we are defining global variable for dynamically change content in circle at cart icon  we will target this variable by JS*/
+      --after-content: "2";
+    }
+    header {
+      width: 100%;
+      height: 12vh;
+      padding-left: 30px;
+      background-color: #fdfdf8;
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    header > ul > li {
+      display: inline-block;
+      line-height: 60px;
+      margin-left: 35px;
+      font-size: 17px;
+    }
+    a {
+      text-decoration: none;
+    }
+    header > ul > li a {
+      font-weight: 500;
+      font-size: 15px;
+      color: #000000;
+      position: relative;
+      text-transform: capitalize;
+      transition: color 0.3s ease;
+    }
+    header > ul > li a:hover {
+      color: #ea4636;
+    }
+    header > ul > li:hover {
+      border-bottom: 2px solid #ea4636;
+    }
+    header > ul > li .submenu {
+      position: absolute;
+      width: 60%;
+      height: 500px;
+      background-color: #fff;
+      box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s ease;
+      margin-top: 2px;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      border: 1px solid black;
+    }
+    header > ul > li:hover .submenu {
+      visibility: visible;
+      opacity: 1;
+    }
+    .container {
+      width: 50%;
+      height: 350px;
+      display: flex;
+      justify-content: space-around;
+    }
+  </style>
+  <body>
+    <header>
+      <ul>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+          <!-- on submenu class we create submenu which will be visible on hover and on megaMenu class we will style the submenu -->
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+      </ul>
+      <div class="cart-box">
+        <div class="cart-icon">
+          <a href="#">
+            <i class="fa-solid fa-cart-shopping fa-2x"></i
+            ><span class="No-of-items">0</span>
+          </a>
+        </div>
+        <div class="cart-window">
+          <h2>Shopping Bag</h2>
+          <div class="cart-wrapper">
+            <!-- product divs will be add in it dynamically -->
+            <!-- item 1 -->
+            <!-- <div class="cart-item">
+              <img
+                src="https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/16550934/2021/12/17/018aed81-4de2-429e-832c-041c3537bdc41639753249564Coats1.jpg"
+                alt=""
+              />
+              <div class="details">
+                <h3>Item Name</h3>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, porro.
+                  <span class="quantity">Quantity: 1</span>
+                  <span class="price">Price: $23.44</span>
+                </p>
+              </div>
+              <div class="cancel"><i class="fa-solid fa-xmark"></i></div>
+            </div> -->
+            <!-- item 2 -->
+            <!-- <div class="cart-item">
+              <img
+                src="https://assets.myntassets.com/f_webp,dpr_2.0,q_60,w_210,c_limit,fl_progressive/assets/images/16550934/2021/12/17/018aed81-4de2-429e-832c-041c3537bdc41639753249564Coats1.jpg"
+                alt=""
+              />
+              <div class="details">
+                <h3>Item Name</h3>
+                <p>
+                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                  Neque, porro.
+                  <span class="quantity">Quantity: 1</span>
+                  <span class="price">Price: $23.44</span>
+                </p>
+              </div>
+              <div class="cancel"><i class="fa-solid fa-xmark"></i></div>
+            </div> -->
+          </div>
+          <div class="subtotal">subtotal: $0.00</div>
+          <div class="checkout">Checkout</div>
+          <div class="view-cart">View Cart</div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="parent" id="1">
+        <div class="out">
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b11?$an-category$&qlt=80&fit=constrain"
+            alt=""
+          />
+          <div class="in">
+            <img
+              src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b?$an-category$&qlt=80&fit=constrain"
+              alt=""
+            />
+          </div>
+          <button>Quickshop</button>
+        </div>
+        <a href="#" class="productName">Bravo knobs, set of 2</a>
+        <a href="#">$<span class="price">270</span></a>
+      </div>
+      <br />
+      <div class="parent" id="2">
+        <div class="out">
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b11?$an-category$&qlt=80&fit=constrain"
+            alt=""
+          />
+          <div class="in">
+            <img
+              src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b?$an-category$&qlt=80&fit=constrain"
+              alt=""
+            />
+          </div>
+          <button>Quickshop</button>
+        </div>
+        <a href="#" class="productName">Bravo knobs, set of 2</a>
+        <a href="#">$<span class="price">370</span></a>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="addToCart.js"></script>

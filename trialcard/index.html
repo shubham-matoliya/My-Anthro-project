@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>card</title>
+  </head>
+  <style>
+    .parent {
+      width: 15%;
+      height: auto;
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      margin: auto;
+      padding-bottom: 10px;
+      font-family: sans-serif;
+      cursor: pointer;
+      transition: transform 0.5s;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .parent > div {
+      position: relative;
+      display: block;
+    }
+    .parent > div button {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-radius: 0;
+      padding: 13px;
+      border: none;
+      background-color: white;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .parent .in {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    .parent .out:hover .in {
+      display: block;
+    }
+    .parent:hover > div button {
+      opacity: 0.7;
+      visibility: visible;
+      cursor: pointer;
+      font-weight: 400;
+      color: black;
+    }
+    .parent:hover {
+      transform: scale(1.05);
+    }
+    .parent > div button:hover {
+      color: rgb(34, 34, 158);
+    }
+    .parent > a {
+      margin-left: 5px;
+      margin-top: 5px;
+      display: inline-block;
+      color: black;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .parent:hover > a {
+      color: rgb(34, 34, 158);
+    }
+  </style>
+  <body>
+    <div class="parent">
+      <div class="out">
+        <img
+          src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b11?$an-category$&qlt=80&fit=constrain"
+          alt=""
+        />
+        <div class="in">
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b?$an-category$&qlt=80&fit=constrain"
+            alt=""
+          />
+        </div>
+        <button>Quickshop</button>
+      </div>
+      <a href="#">Bravo knobs, set of 2</a>
+    </div>
+  </body>
+</html>

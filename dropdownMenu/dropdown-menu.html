@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown menu</title>
+  </head>
+  <script
+    src="https://kit.fontawesome.com/45e6a363b2.js"
+    crossorigin="anonymous"
+  ></script>
+  <style>
+    @import url(“https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;1,300&display=swap”);
+
+    body {
+      line-height: 1.5;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: ‘Poppins’, sans-serif;
+    }
+    ::before,
+    ::after {
+      box-sizing: border-box;
+    }
+    header {
+      width: 100%;
+      padding-left: 30px;
+      background-color: #fdfdf8;
+      border-top: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    header > ul > li {
+      display: inline-block;
+      line-height: 60px;
+      margin-left: 35px;
+      font-size: 17px;
+    }
+    a {
+      text-decoration: none;
+    }
+    header > ul > li a {
+      font-weight: 500;
+      font-size: 15px;
+      color: #000000;
+      position: relative;
+      text-transform: capitalize;
+      transition: color 0.3s ease;
+    }
+    header > ul > li a:hover {
+      color: #ea4636;
+    }
+    header > ul > li:hover {
+      border-bottom: 2px solid #ea4636;
+    }
+    header > ul > li .submenu {
+      position: absolute;
+      width: 60%;
+      height: 500px;
+      background-color: #fff;
+      box-shadow: -2px 2px 70px -25px rgba(0, 0, 0, 0.3);
+      transition: all 0.5s ease;
+      margin-top: 2px;
+      opacity: 0;
+      visibility: hidden;
+      z-index: 999;
+      border: 1px solid black;
+    }
+    header > ul > li:hover .submenu {
+      visibility: visible;
+      opacity: 1;
+    }
+    /* to set submenu position */
+    /* header > ul > li > .submenu {
+      left: 62%;
+      transform: translateX(-50%);
+    } */
+  </style>
+  <body>
+    <header>
+      <ul>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+          <!-- on submenu class we create submenu which will be visible on hover and on megaMenu class we will style the submenu -->
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+        <li>
+          <a href="#">menu</a>
+          <div class="submenu megaMenu"></div>
+        </li>
+      </ul>
+      <div class="cart-icon">
+        <i class="fa-solid fa-cart-shopping fa-2x non-empty"></i>
+        <!-- fa-2x makes it 2 times larger -->
+      </div>
+    </header>
+  </body>
+</html>

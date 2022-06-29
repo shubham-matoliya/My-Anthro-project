@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shoes</title>
+  </head>
+  <style>
+    .container {
+      width: 80%;
+      height: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      /* border: 1px solid red; */
+      margin-left: 17%;
+    }
+    .parent {
+      box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+      margin: auto;
+      padding-bottom: 10px;
+      font-family: sans-serif;
+      cursor: pointer;
+      transition: transform 0.5s;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .parent > div {
+      position: relative;
+      display: block;
+    }
+    .parent > div button {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      border-radius: 0;
+      padding: 13px;
+      border: none;
+      background-color: white;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .parent .in {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    .parent .out:hover .in {
+      display: block;
+    }
+    .parent:hover > div button {
+      opacity: 0.7;
+      visibility: visible;
+      cursor: pointer;
+      font-weight: 400;
+      color: black;
+    }
+    .parent:hover {
+      transform: scale(1.05);
+    }
+    .parent > div button:hover {
+      color: rgb(34, 34, 158);
+    }
+    .parent > a {
+      margin-left: 5px;
+      margin-top: 5px;
+      display: block;
+      color: black;
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .parent > a + a {
+      font-size: 16px;
+    }
+    .parent:hover > a {
+      color: rgb(34, 34, 158);
+    }
+  </style>
+  <body>
+    <div class="container">
+      <!-- <div class="parent">
+        <div class="out">
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b11?$an-category$&qlt=80&fit=constrain"
+            alt=""
+          />
+          <div class="in">
+            <img
+              src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b?$an-category$&qlt=80&fit=constrain"
+              alt=""
+            />
+          </div>
+          <button>Quickshop</button>
+        </div>
+        <a href="#">Bravo knobs, set of 2</a>
+      </div> -->
+    </div>
+  </body>
+</html>
+<script>
+  let cardobj = [
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67554261_066_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67554261_066_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Jeffrey Campbell Basket Heels",
+      price: "$225",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_068_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_068_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bibi Lou Aoi Heels",
+      price: "$180",
+    },
+
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65224065_053_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65224065_053_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Leeward Mules",
+      price: "$119",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69212355_080_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69212355_080_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Alohas Brushed Degradé Mules",
+      price: "$168",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67426239_030_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67426239_030_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Angel Alarcon Strappy Heelss",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68634195_025_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68634195_025_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Jeffrey Campbell Basket Heels",
+      price: "$200",
+    },
+
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66604497_068_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66604497_068_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Jeffrey Campbell Linques Sandals",
+      price: "$130",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66436783_072_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66436783_072_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Birkenstock Arizona EVA Sandals",
+      price: "$80",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66174640_068_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66174640_068_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Low Key Glow Up Sandals",
+      price: "$99",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/59968305_002_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/59968305_002_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Teva Universal Midform Sandals",
+      price: "$79",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/57064404_002_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/57064404_002_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Veja Campo Leather Sneakers",
+      price: "$179",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/58264052_010_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/58264052_010_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "On Cloud X Sneakers",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69827319_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69827319_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Nisolo Isla Woven Slide Sandals",
+      price: "$100",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68877380_012_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68877380_012_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Nisolo Isla Woven Slide Sandals",
+      price: "$130",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65105884_041_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65105884_041_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Guilhermina Sculptural Heeled Sandals",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_080_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_080_b14?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bibi Lou Aoi Heels",
+      price: "$180",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_030_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66297565_030_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bibi Lou Aoi Heels",
+      price: "$180",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69822229_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69822229_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bernardo Raleigh Heels",
+      price: "$210",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68756824_040_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68756824_040_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Silent D Nider Boots",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78159779_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78159779_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bernardo Eloise Ballet Flats",
+      price: "$175",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_014_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_014_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Caster H2O Boots",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_026_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_026_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Caster H2O Boots",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67081315_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Caster H2O Boots",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76192566_010_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76192566_010_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Soludos Rainbow Wave Sneakers",
+      price: "$180",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67425074_020_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67425074_020_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Pilcro Gladiator Sport Sandals",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67747006_080_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67747006_080_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "TKEES Solids Thong Sandals",
+      price: "$60",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66417809_065_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/66417809_065_b14?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Jeffrey Campbell Saints Heel",
+      price: "$170",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76178912_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76178912_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Soludos Platform Smoking Slippers",
+      price: "$90",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68475268_221_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68475268_221_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Kelsi Dagger Swag Sandals",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/61509329_009_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/61509329_009_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Beek Seabird Slide Sandals",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68542943_001_b14?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68542943_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Vicenza Knotted Platform Heels",
+      price: "$190",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68542190_080_b14?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68542190_080_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Vicenza Metallic Mules",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76192954_016_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76192954_016_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Soludos Ibiza Platform Sneakers",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68945401_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68945401_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Angel Alarcon Ankle-Strap Heels",
+      price: "$190",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67192310_011_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67192310_011_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Nisolo Mara Woven Loafers",
+      price: "$180",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68541952_025_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68541952_025_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Vicenza Square-Toe Mules",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68731850_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68731850_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Loud and Clear Heels",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67015693_001_b14?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67015693_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Caverley Trish Heeled Mules",
+      price: "$165",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/64783913_044_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/64783913_044_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "New Balance 574 Light Slate Sneakers",
+      price: "$90",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68703271_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68703271_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Heartfelt Sandals",
+      price: "$110",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68829134_024_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68829134_024_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Guilhermina Pointed-Toe Mary Janes",
+      price: "$140",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68756469_020_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68756469_020_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Silent D Delvia Boots",
+      price: "$170",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68543271_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68543271_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Vicenza Strappy Platform Heels",
+      price: "$200",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68384353_005_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68384353_005_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "UGG Fluff Yeah Slide Slippers",
+      price: "$100",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68945690_020_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68945690_020_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Angel Alarcon Mary Jane Heels",
+      price: "$120",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78156692_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78156692_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bernardo Sochi Clogs",
+      price: "$230",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69333631_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69333631_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Sita Heels",
+      price: "$149",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67837575_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67837575_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Schutz Lily Mid Heels",
+      price: "$180",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76189422_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/76189422_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Soludos Venetian Mules",
+      price: "$159",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78157609_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78157609_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bernardo Sophia Clogs",
+      price: "$250",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68733203_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68733203_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Fancy Affair Boots",
+      price: "$160",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78156346_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/78156346_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Bernardo Sorrena Heeled Sandals",
+      price: "$248",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65567992_266_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/65567992_266_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Teva Midform Universal Sandals",
+      price: "$80",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67745745_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67745745_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "TKEES Foundations Glossy Sandals",
+      price: "$70",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69332997_014_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69332997_014_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Camdin Heels",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69332997_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69332997_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Camdin Heels",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/59826149_009_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/59826149_009_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "On Cloudnova Sneakers",
+      price: "$179",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68807197_026_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68807197_026_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Matisse Scorpio Ballet Flats",
+      price: "$130",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67013219_010_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67013219_010_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Schutz Hina Heels",
+      price: "$138",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67746784_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/67746784_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "TKEES Senna Strappy Sandals",
+      price: "$75",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69422574_020_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/69422574_020_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Dolce Vita Elly Platform Heels",
+      price: "$150",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/61768479_066_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/61768479_066_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "New Balance Fresh Foam Roav v2",
+      price: "$90",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/60051281_021_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/60051281_021_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Silent D Puly Western Boots",
+      price: "$200",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68728880_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68728880_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Seychelles Stand Tall Slip-On Flats",
+      price: "$139",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68768472_001_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68768472_001_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "Birkenstock Boston Vegan Flats",
+      price: "$120",
+    },
+    {
+      outImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68620756_041_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      inImage:
+        "https://images.urbndata.com/is/image/Anthropologie/68620756_041_b2?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080",
+      cardDetails: "All Black Strappy Sandals",
+      price: "$150",
+    },
+    {
+      outImage: "",
+      inImage: "",
+      cardDetails: "",
+      price: "$",
+    },
+  ];
+  cardobj.forEach(function (elem) {
+    console.log("hello");
+    let container = document.querySelector(".container");
+    let parentdiv = document.createElement("div");
+    parentdiv.setAttribute("class", "parent");
+    let outdiv = document.createElement("div");
+    outdiv.setAttribute("class", "out");
+    let indiv = document.createElement("div");
+    indiv.setAttribute("class", "in");
+    let btn = document.createElement("button");
+    let anchor = document.createElement("a");
+    anchor.setAttribute("href", "#");
+    anchor.innerText = elem.cardDetails;
+    let outimage = document.createElement("img");
+    outimage.setAttribute("src", elem.outImage);
+    let inimage = document.createElement("img");
+    inimage.setAttribute("src", elem.inImage);
+    btn.innerText = "Quickshop";
+    let price = document.createElement("a");
+    price.setAttribute("href", "#");
+    price.innerText = elem.price;
+    container.append(parentdiv);
+    parentdiv.append(outdiv, anchor, price);
+    outdiv.append(outimage, indiv, btn);
+    indiv.append(inimage);
+  });
+</script>
