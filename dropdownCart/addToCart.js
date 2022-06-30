@@ -42,11 +42,11 @@ function addToCart(event) {
         .innerText,
   };
   // to display item in cart in local storage start
-  tempfun(cartObj);
+  increaseQty(cartObj);
   //end
 }
 
-function tempfun(cartObj) {
+function increaseQty(cartObj) {
   // console.log(cartObj);
   let cartArray = JSON.parse(localStorage.getItem("inCart"));
   if (cartArray == null) {
