@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Navbar</title>
+    <link rel="stylesheet" href="responsive_navbar_style.css" />
+    <script
+      src="https://kit.fontawesome.com/45e6a363b2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body class="mobile">
+    <nav>
+      <div class="container nav-wrapper">
+        <div class="brand">
+          <i class="fa-solid fa-camera-retro"></i>
+          <span><strong>Responsive Navbar</strong> </span>
+        </div>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+
+        <ul class="nav-list">
+          <li class="active">
+            <a href="#">Home</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Services</a>
+            <!-- for dropdown Menu -->
+            <ul class="dropdown-list">
+              <li><a href="#">SEO Optimization</a></li>
+              <li><a href="#">Digital Marketing</a></li>
+              <li><a href="#">Web development</a></li>
+              <li><a href="#">Web Design</a></li>
+              <li><a href="#">Software Development</a></li>
+              <li><a href="#">Branding</a></li>
+              <li><a href="#">Content writing</a></li>
+            </ul>
+          </li>
+          <li><a href="#">Q&A</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <button class="btn">Login</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <section class="header container">
+        <div>
+          <h1>Awesome Responsive Navbar</h1>
+          <h4>Lorem ipsum dolor sit amet consectetur.</h4>
+          <div>
+            <button class="btn">Watch Video now</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="responsive_Navbar.js"></script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login page</title>
+  </head>
+  <link rel="stylesheet" href="login-style.css" />
+  <link rel="html" href="homepage.html" />
+
+  <script
+    src="https://kit.fontawesome.com/45e6a363b2.js"
+    crossorigin="anonymous"
+  ></script>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Login Form</h2>
+      </div>
+      <form class="form" id="form">
+        <div class="form-control">
+          <label for="">Email</label>
+          <input
+            type="email"
+            id="email"
+            required
+            placeholder="Enter Your Email"
+          />
+          <i class="fa-solid fa-circle-check"></i>
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <small>Error Message</small>
+        </div>
+
+        <div class="form-control">
+          <label for="">Password</label>
+          <input
+            type="password"
+            id="password"
+            required
+            placeholder="Enter Password"
+          />
+          <i class="fa-solid fa-circle-check"></i>
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <small>Error Message</small>
+        </div>
+
+        <input type="submit" value="submit" id="submit" class="btn" />
+      </form>
+      <p><a href="registration.html">Sign up</a></p>
+    </div>
+  </body>
+  <script>
+    let form = document.getElementById("form");
+    form.addEventListener("submit", checkDetails);
+    let count = 0;
+    function checkDetails() {
+      event.preventDefault();
+      let getdetails = JSON.parse(localStorage.getItem("UserDetails"));
+      let email = document.getElementById("email");
+      let password = document.getElementById("password");
+      let parentemail = email.parentNode;
+      let parentpassword = password.parentNode;
+      console.log(parentemail);
+      console.log(parentpassword);
+      getdetails.forEach((element) => {
+        if (element.useremail == email.value) {
+          parentemail.querySelector("small").innerText = "Email registered";
+          parentemail.classList.add("success");
+          if (element.userpassword == password.value) {
+            parentpassword.classList.add("success");
+            alert("login successful");
+            setTimeout(() => {
+              window.location = "homepage.html";
+            }, 3000);
+          } else {
+            parentpassword.querySelector("small").innerText =
+              "Password do not match with registered email";
+            parentpassword.classList.add("error");
+            setTimeout(() => {
+              window.location.reload();
+            }, 3000);
+          }
+        } else {
+          count++;
+        }
+        if (count == getdetails.length) {
+          parentemail.querySelector("small").innerText =
+            "Email is not registered";
+          parentemail.classList.add("error");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      });
+    }
+  </script>
+</html>

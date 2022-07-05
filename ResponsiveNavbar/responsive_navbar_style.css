@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* here we are keeping colours in variables if we change colour of these variables whole theme will get change according to it */
+
+:root {
+  --primary: #933ded;
+  --dark: #232323;
+  --pure: #fff;
+  --smoke: whitesmoke;
+  --dark-gray: #999;
+}
+body {
+  font-family: sans-serif;
+  background-color: var(--dark);
+  color: var(--pure);
+}
+
+.container {
+  width: 1152px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.brand {
+  display: flex;
+  align-items: center;
+}
+.brand > .fa-camera-retro {
+  font-size: 30px;
+  margin-right: 10px;
+  color: var(--pure);
+}
+.nav-wrapper ul.nav-list {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+.nav-wrapper ul.nav-list li {
+  margin-left: 30px;
+  padding: 20px 0;
+  position: relative;
+}
+.nav-wrapper ul.nav-list li a {
+  color: var(--pure);
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.5s ease-in-out;
+}
+.btn {
+  background-color: var(--primary);
+  color: var(--pure);
+  /* better way of border */
+  border: 1px solid transparent;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.5s ease-in-out;
+}
+.nav-wrapper ul.nav-list li a:hover,
+.nav-wrapper ul.nav-list li.active a {
+  color: var(--primary);
+}
+.btn:hover {
+  background-color: transparent;
+  border: 1px solid var(--pure);
+}
+main section.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 160px;
+}
+main section.header h1 {
+  font-size: 36px;
+  font-weight: 100;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+main section.header h4 {
+  font-size: 18px;
+  font-weight: 400;
+  color: #999;
+
+  margin-bottom: 20px;
+}
+.nav-wrapper ul.dropdown-list {
+  list-style-type: none;
+  display: block;
+  background-color: whitesmoke;
+  padding: 6px 16px;
+  position: absolute;
+  width: max-content;
+  z-index: 999;
+  left: 50%;
+  /* this left 50% will shift that menu 50% left wrt to sevices li tag */
+  transform: translateX(-50%);
+  /* this is used for centering dropdown menu wrt its parent tag ie service li tag */
+  opacity: 0;
+  visibility: hidden;
+}
+.nav-wrapper ul.dropdown-list li {
+  margin-left: 0;
+  padding: 5px 0;
+}
+.nav-wrapper ul.dropdown-list li a {
+  color: #232323;
+}
+.nav-wrapper ul.nav-list li:hover ul.dropdown-list {
+  visibility: visible;
+  opacity: 1;
+  animation: moveUp 0.5s ease-in-out forwards;
+}
+/* we are giving animations to that dropdown list */
+@keyframes moveUp {
+  /* when animation is 0% */
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(50px);
+  }
+  /* when animation is 100% */
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+.hamburger {
+  display: none;
+}
+
+/* we will activate this mobile class in body tag manually by javascript */
+.mobile .hamburger {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  cursor: pointer;
+}
+.mobile .hamburger span {
+  background-color: var(--pure);
+  width: 28px;
+  height: 2px;
+  margin-bottom: 8px;
+}
+.mobile ul.nav-list {
+  background: -webkit-linear-gradient(45deg, #434343, #000000);
+  /* for chrome */
+  background: linear-gradient(45deg, #434343, #000000);
+  /* for other browser */
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  opacity: 0;
+  visibility: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.hamburger,
+.brand {
+  z-index: 9999;
+}
+/* this will bring logo and hamburger on top */
+.mobile ul.nav-list.open {
+  opacity: 1;
+  visibility: visible;
+}
+/* we will activate this open class with javascript only */
+.mobile .hamburger span {
+  transform-origin: left;
+  transition: all 0.3s ease-in-out;
+  /* this is for animation of hamburger spans */
+}
+
+.mobile .nav-list li a {
+  font-size: 20px;
+}
+.mobile ul.dropdown-list {
+  position: relative;
+  background: transparent;
+  text-align: center;
+  height: 0;
+  overflow-y: hidden;
+  transition: opacity 1s ease-in-out;
+  padding-top: 0;
+}
+.mobile .nav-wrapper ul li:hover .dropdown-list {
+  height: max-content;
+  padding-top: 6px;
+}
+.mobile .nav-list li {
+  margin-left: 0;
+  text-align: center;
+}
+.mobile .nav-wrapper ul.dropdown-list li a {
+  color: #999;
+}
+.mobile .nav-wrapper ul.dropdown-list li a:hover {
+  color: var(--primary);
+}
