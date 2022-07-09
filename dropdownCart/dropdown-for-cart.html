@@ -19,6 +19,9 @@
     body {
       line-height: 1.5;
     }
+    body.popup {
+      pointer-events: none;
+    }
     * {
       margin: 0;
       padding: 0;
@@ -97,6 +100,138 @@
       display: flex;
       justify-content: space-around;
     }
+    .container2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .container2 {
+      display: none;
+      background: #fff;
+      width: 800px;
+      height: 650px;
+      /* padding: 30px; */
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .container2 .fa-regular {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .container2 .fa-regular:hover {
+      color: #326b80;
+    }
+    .show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container2 > .product {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* height: 85%; */
+      width: 90%;
+      font-family: sans-serif;
+    }
+    .container2 > .product img {
+      width: 100%;
+    }
+    .container2 > .product > div {
+      /* border: 1px solid red; */
+    }
+    .container2 > .product h2 {
+      text-align: center;
+      font-weight: 400;
+    }
+    .container2 > .product p {
+      margin-left: 10%;
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    .container2 > .product > div:nth-child(2) > .size {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: auto;
+      margin-top: 15px;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label {
+      width: 50px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label:hover {
+      border: 1px solid #326b80;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label > input {
+      visibility: hidden;
+      position: absolute;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label > input + div {
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 5px;
+    }
+    .container2
+      > .product
+      > div:nth-child(2)
+      > .size
+      > label
+      > input:checked
+      + div {
+      border: 2px solid #326b80;
+    }
+    .container2 > .product > div:nth-child(2) #qty {
+      margin-left: 10%;
+      padding: 8px 15px;
+      font-size: 20px;
+      border: 1px solid #326b80;
+      margin-top: 15px;
+    }
+    .container2 > .product > div:nth-child(2) #qty:hover {
+      cursor: pointer;
+    }
+    .container2 > .product > div:nth-child(2) > .quantity button {
+      margin-left: 25px;
+      font-size: 18px;
+      padding: 10px 22px;
+      background-color: #326b80;
+      border-radius: none;
+      border: 1px solid transparent;
+      color: white;
+    }
+    .container2 > .product > div:nth-child(2) > .quantity button:hover {
+      background-color: transparent;
+      border: 1px solid #326b80;
+      color: #326b80;
+      cursor: pointer;
+    }
+
+    body .show {
+      pointer-events: all;
+    }
+    .reduce-opacity {
+      opacity: 0.5;
+    }
+    span#productid {
+      display: none;
+      margin-left: 10%;
+    }
   </style>
   <body>
     <header>
@@ -139,9 +274,9 @@
               <div class="details">
                 <h3>Item Name</h3>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Neque, porro.
+                  Lorem, ipsum dolor sit amet consectetur
                   <span class="quantity">Quantity: 1</span>
+                  <span class="size">Size: M</span>
                   <span class="price">Price: $23.44</span>
                 </p>
               </div>
@@ -156,9 +291,9 @@
               <div class="details">
                 <h3>Item Name</h3>
                 <p>
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Neque, porro.
+                  Lorem, ipsum dolor sit amet consectetur
                   <span class="quantity">Quantity: 1</span>
+                  <span class="size">Size: M</span>
                   <span class="price">Price: $23.44</span>
                 </p>
               </div>
@@ -184,7 +319,7 @@
               alt=""
             />
           </div>
-          <button>Quickshop</button>
+          <button class="quickshop">Quickshop</button>
         </div>
         <a href="#" class="productName">Bravo knobs, set of 2</a>
         <a href="#">$<span class="price">270</span></a>
@@ -202,10 +337,68 @@
               alt=""
             />
           </div>
-          <button>Quickshop</button>
+          <button class="quickshop">Quickshop</button>
         </div>
         <a href="#" class="productName">Bravo knobs, set of 2</a>
         <a href="#">$<span class="price">370</span></a>
+      </div>
+    </div>
+    <div class="container2">
+      <label class="fa-regular fa-circle-xmark"></label>
+      <div class="product">
+        <div>
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/4130652010050_079_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080"
+            alt=""
+          />
+        </div>
+        <div>
+          <h2>Maeve Strapless Mini Dress</h2>
+
+          <p><span>$</span><span class="price">170.00</span></p>
+          <p>color: Yellow</p>
+          <span id="productid">2</span>
+          <p>Select size*</p>
+          <div class="size">
+            <label>
+              <input type="radio" name="Size" value="XS" />
+              <div>XS</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="S" />
+              <div>S</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="M" />
+              <div>M</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="L" />
+              <div>L</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="XL" />
+              <div>XL</div>
+            </label>
+          </div>
+
+          <div class="quantity">
+            <p>Quantity*</p>
+            <select name="" id="qty">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <span><button class="add-to-basket">ADD TO BASKET</button></span>
+          </div>
+        </div>
       </div>
     </div>
   </body>

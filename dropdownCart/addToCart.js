@@ -1,4 +1,5 @@
-let cart = document.querySelectorAll("button");
+let cart = document.querySelectorAll("button.quickshop");
+
 let number = JSON.parse(localStorage.getItem("cartNumbers")) || 0;
 document.querySelector(".No-of-items").textContent = number;
 let cartArray = [];
@@ -6,20 +7,100 @@ let cartArray = [];
 let sum = localStorage.setItem("subtotal", Number(0));
 
 cart.forEach(function (elem) {
-  elem.addEventListener("click", addToCart);
-  elem.addEventListener("click", cartNumber);
+  elem.addEventListener("click", showbox);
 });
+
+function showbox(event) {
+  let box_cartObj = {
+    image: event.target.parentNode.parentNode
+      .querySelector(".out>img")
+      .getAttribute("src")
+      .toString(),
+    price: event.target.parentNode.parentNode.querySelector(".price").innerText,
+    product_id: event.target.parentNode.parentNode.getAttribute("id"),
+
+    productName:
+      event.target.parentNode.parentNode.querySelector(".productName")
+        .innerText,
+  };
+  displayBoxContent(box_cartObj);
+}
+
+function displayBoxContent(elem) {
+  // console.log(document.querySelector(".container2"));
+  // console.log(elem);
+  document
+    .querySelector(".container2 > .product img")
+    .setAttribute("src", elem.image);
+  document.querySelector(".container2 > .product h2").innerText =
+    elem.productName;
+  document.querySelector(".container2 > .product .price").innerText =
+    elem.price;
+  document.querySelector(".container2 > .product #productid").innerText =
+    elem.product_id;
+  document
+    .querySelector(".container2 .size input")
+    .setAttribute("checked", "checked");
+  document.querySelector(".container2 > .product #qty").value = 1;
+  document.querySelector(".container2 #qty").classList.add(elem.product_id);
+  document.querySelector(".container2").classList.add("show");
+
+  document.querySelector("body").classList.add("popup");
+  document.querySelector("header").classList.add("reduce-opacity");
+  document.querySelector(".container").classList.add("reduce-opacity");
+  document
+    .querySelector(".container2 > .fa-regular")
+    .addEventListener("click", function () {
+      document.querySelector(".container2").classList.remove("show");
+      document.querySelector("body").classList.remove("popup");
+      document.querySelector("header").classList.remove("reduce-opacity");
+      document.querySelector(".container").classList.remove("reduce-opacity");
+    });
+  document
+    .querySelector(".container2 .add-to-basket")
+    .addEventListener("click", cartNumber);
+
+  document
+    .querySelector(".show .add-to-basket")
+    .addEventListener("click", solvemyproblem);
+}
+
+function solvemyproblem(event) {
+  let target = event.target.parentNode.parentNode.parentNode.parentNode;
+  let getsize = target.querySelectorAll(".size label input");
+  let psize;
+  getsize.forEach(function (elem) {
+    let set;
+    if (elem.checked) psize = elem.value;
+  });
+
+  let cartObj = {
+    productSize: psize,
+    productImage: target.querySelector("img").getAttribute("src"),
+    productName: target.querySelector("h2").innerText,
+    productPrice: target.querySelector(".price").innerText,
+    productQuantity: target.querySelector("#qty").value,
+    product_id: target.querySelector("#productid").innerText,
+  };
+  increaseQty(cartObj);
+}
+function getvalueofsize(event) {
+  console.log(event.target.value);
+}
 
 function cartNumber() {
   let productNumber = localStorage.getItem("cartNumbers");
   productNumber = Number(productNumber);
+  let qty = document.querySelector(".container2 #qty").value;
+  qty = Number(qty);
+  // console.log(typeof qty);
   // or we can do productNumber = parseInt(productNumber)
   if (productNumber) {
-    localStorage.setItem("cartNumbers", productNumber + 1);
-    document.querySelector(".No-of-items").textContent = productNumber + 1;
+    localStorage.setItem("cartNumbers", productNumber + qty);
+    document.querySelector(".No-of-items").textContent = productNumber + qty;
   } else {
-    localStorage.setItem("cartNumbers", 1);
-    document.querySelector(".No-of-items").textContent = 1;
+    localStorage.setItem("cartNumbers", qty);
+    document.querySelector(".No-of-items").textContent = qty;
   }
 }
 document
@@ -29,22 +110,21 @@ document.querySelector(".cart-box").addEventListener("mouseout", function () {
   return 0;
 });
 
-function addToCart(event) {
-  let cartObj = {
-    image: event.target.parentNode.parentNode
-      .querySelector(".out>img")
-      .getAttribute("src")
-      .toString(),
-    price: event.target.parentNode.parentNode.querySelector(".price").innerText,
-    product_id: event.target.parentNode.parentNode.getAttribute("id"),
-    productName:
-      event.target.parentNode.parentNode.querySelector(".productName")
-        .innerText,
-  };
-  // to display item in cart in local storage start
-  increaseQty(cartObj);
-  //end
-}
+// function addToCart(event) {
+//   let cartObj = {
+//     image: event.target.parentNode.parentNode
+//       .querySelector(".out>img")
+//       .getAttribute("src")
+//       .toString(),
+//     price: event.target.parentNode.parentNode.querySelector(".price").innerText,
+//     product_id: event.target.parentNode.parentNode.getAttribute("id"),
+//     productName:
+//       event.target.parentNode.parentNode.querySelector(".productName")
+//         .innerText,
+//   };
+
+//   increaseQty(cartObj);
+// }
 
 function increaseQty(cartObj) {
   // console.log(cartObj);
@@ -55,15 +135,16 @@ function increaseQty(cartObj) {
     let product = {
       productId: cartObj.product_id,
       productName: cartObj.productName,
-      productPrice: cartObj.price,
-      productQuantity: 1,
-      productImage: cartObj.image,
+      productPrice: cartObj.productPrice,
+      productQuantity: cartObj.productQuantity,
+      productImage: cartObj.productImage,
+      productSize: cartObj.productSize,
     };
     productsArray.push(product);
 
     localStorage.setItem("inCart", JSON.stringify(productsArray));
     cartArray = JSON.parse(localStorage.getItem("inCart"));
-    console.log("product is added for first time");
+    // console.log("product is added for first time");
     displayCart(cartArray);
   } else {
     // products are already present
@@ -71,11 +152,17 @@ function increaseQty(cartObj) {
     let count = 0;
 
     cartArray.forEach(function (elem) {
-      if (elem.productId == cartObj.product_id) {
+      if (
+        elem.productId == cartObj.product_id &&
+        elem.productSize == cartObj.productSize
+      ) {
+        console.log(cartArray);
         // we have to increase quantity
-        elem.productQuantity = elem.productQuantity + 1;
+
+        elem.productQuantity =
+          Number(elem.productQuantity) + Number(cartObj.productQuantity);
         localStorage.setItem("inCart", JSON.stringify(cartArray));
-        console.log("product quantity is increased");
+        // console.log("product quantity is increased");
         displayCart(cartArray);
       } else {
         count++;
@@ -86,13 +173,16 @@ function increaseQty(cartObj) {
       let product = {
         productId: cartObj.product_id,
         productName: cartObj.productName,
-        productPrice: cartObj.price,
-        productQuantity: 1,
-        productImage: cartObj.image,
+        productPrice: cartObj.productPrice,
+        productQuantity: cartObj.productQuantity,
+        productImage: cartObj.productImage,
+        productSize: cartObj.productSize,
       };
+
       cartArray.push(product);
       localStorage.setItem("inCart", JSON.stringify(cartArray));
-      console.log("product is added");
+      console.log(cartArray);
+      // console.log("product is added");
       displayCart(cartArray);
     }
   }
@@ -133,6 +223,20 @@ function displayCart(cartArray) {
 
     quantity.innerText = "Quantity: " + elem.productQuantity;
 
+    let productSize = document.createElement("span");
+
+    productSize.setAttribute("class", "size");
+
+    productSize.innerText = "Size: ";
+
+    let productSizenmbr = document.createElement("span");
+
+    productSizenmbr.setAttribute("id", "size");
+
+    productSizenmbr.innerText = elem.productSize;
+
+    productSize.append(productSizenmbr);
+
     let productPrice = document.createElement("span");
 
     productPrice.setAttribute("class", "price");
@@ -153,7 +257,7 @@ function displayCart(cartArray) {
     let wrapper = document.querySelector(".cart-wrapper");
     console.log();
     if (elem.productQuantity > 0) {
-      productDescription.append(quantity, productPrice);
+      productDescription.append(quantity, productSize, productPrice);
       details.append(itemName, productDescription);
       cart.append(img, details, cross);
       wrapper.append(cart);
@@ -175,24 +279,30 @@ function deletecart(event) {
   let item = event.target.parentNode.parentNode;
   let num = Number(localStorage.getItem("cartNumbers"));
   num--;
-  console.log(num);
+  // console.log(num);
   localStorage.setItem("cartNumbers", num);
   document.querySelector(".No-of-items").textContent = num;
   let price =
     event.target.parentNode.parentNode.querySelector(".price").innerText;
-  // console.log(price);
+  let size =
+    event.target.parentNode.parentNode.querySelector("#size").innerText;
+
   let Id = event.target.parentNode.parentNode.getAttribute("id");
+  // console.log(price, size, Id);
   // console.log(Id);
   let cartArray = JSON.parse(localStorage.getItem("inCart"));
-  cartArray.forEach(function (elem) {
-    if (elem.productId == Id) {
-      elem.productQuantity--;
+  for (let i = 0; i < cartArray.length; i++) {
+    if (cartArray[i].productId == Id && cartArray[i].productSize == size) {
+      cartArray[i].productQuantity--;
+
       localStorage.setItem("inCart", JSON.stringify(cartArray));
-      if (elem.productQuantity == 0) {
+      if (Number(cartArray[i].productQuantity) == 0) {
         deleteit(item);
+        cartArray.splice(i, 1);
+        localStorage.setItem("inCart", JSON.stringify(cartArray));
       }
     }
-  });
+  }
   // event.target.parentNode.parentNode.remove();
   cartArray = JSON.parse(localStorage.getItem("inCart"));
 

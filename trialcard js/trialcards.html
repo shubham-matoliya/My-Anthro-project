@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>card</title>
   </head>
+  <script
+    src="https://kit.fontawesome.com/45e6a363b2.js"
+    crossorigin="anonymous"
+  ></script>
   <style>
     .container {
       width: 80%;
@@ -80,10 +84,128 @@
     .parent:hover > a {
       color: rgb(34, 34, 158);
     }
+    .container2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .container2 {
+      display: none;
+      background: #fff;
+      width: 800px;
+      height: 650px;
+      /* padding: 30px; */
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
+    .container2 .fa-regular {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .container2 .fa-regular:hover {
+      color: #326b80;
+    }
+    #show {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container2 > .product {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* height: 85%; */
+      width: 90%;
+      font-family: sans-serif;
+    }
+    .container2 > .product img {
+      width: 100%;
+    }
+    .container2 > .product > div {
+      /* border: 1px solid red; */
+    }
+    .container2 > .product h2 {
+      text-align: center;
+      font-weight: 400;
+    }
+    .container2 > .product p {
+      margin-left: 10%;
+      font-size: 20px;
+    }
+    .container2 > .product > div:nth-child(2) > .size {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: auto;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label {
+      width: 50px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      font-size: 20px;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label:hover {
+      border: 1px solid #326b80;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label > input {
+      visibility: hidden;
+      position: absolute;
+    }
+    .container2 > .product > div:nth-child(2) > .size > label > input + div {
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid transparent;
+      border-radius: 5px;
+    }
+    .container2
+      > .product
+      > div:nth-child(2)
+      > .size
+      > label
+      > input:checked
+      + div {
+      border: 2px solid #326b80;
+    }
+    .container2 > .product > div:nth-child(2) #qty {
+      margin-left: 10%;
+      padding: 8px 15px;
+      font-size: 20px;
+      border: 1px solid #326b80;
+    }
+    .container2 > .product > div:nth-child(2) #qty:hover {
+      cursor: pointer;
+    }
+    .container2 > .product > div:nth-child(2) > .quantity button {
+      margin-left: 25px;
+      font-size: 18px;
+      padding: 10px 22px;
+      background-color: #326b80;
+      border-radius: none;
+      border: 1px solid transparent;
+      color: white;
+    }
+    .container2 > .product > div:nth-child(2) > .quantity button:hover {
+      background-color: transparent;
+      border: 1px solid #326b80;
+      color: #326b80;
+      cursor: pointer;
+    }
   </style>
   <body>
     <div class="container">
-      <!-- <div class="parent">
+      <div class="parent">
         <div class="out">
           <img
             src="https://images.urbndata.com/is/image/Anthropologie/54312020_027_b11?$an-category$&qlt=80&fit=constrain"
@@ -98,11 +220,73 @@
           <button>Quickshop</button>
         </div>
         <a href="#">Bravo knobs, set of 2</a>
-      </div> -->
+      </div>
+    </div>
+    <div class="container2" id="show">
+      <label class="fa-regular fa-circle-xmark"></label>
+      <div class="product">
+        <div>
+          <img
+            src="https://images.urbndata.com/is/image/Anthropologie/4130652010050_079_b?$a15-pdp-detail-shot$&fit=constrain&fmt=webp&qlt=80&wid=1080"
+            alt=""
+          />
+        </div>
+        <div>
+          <h2>Maeve Strapless Mini Dress</h2>
+
+          <p>$170.00</p>
+          <p>color: Yellow</p>
+          <p>Select size*</p>
+          <div class="size">
+            <label>
+              <input type="radio" name="Size" value="XS" checked="checked" />
+              <div>XS</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="S" />
+              <div>S</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="M" />
+              <div>M</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="L" />
+              <div>L</div>
+            </label>
+            <label>
+              <input type="radio" name="Size" value="XL" />
+              <div>XL</div>
+            </label>
+          </div>
+
+          <!-- <input type="radio" name="Size" class="size" value="S" />
+          <input type="radio" name="Size" class="size" value="M" />
+          <input type="radio" name="Size" class="size" value="L" />
+          <input type="radio" name="Size" class="size" value="XL" /> -->
+
+          <div class="quantity">
+            <p>Quantity*</p>
+            <select name="" id="qty">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <span><button>ADD TO BASKET</button></span>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
-<script>
+<!-- <script>
   let cardobj = [
     {
       // id from 1 to 40
@@ -493,4 +677,4 @@
     outdiv.append(outimage, indiv, btn);
     indiv.append(inimage);
   });
-</script>
+</script> -->

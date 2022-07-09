@@ -58,6 +58,7 @@ header > .cart-box .cart-window .subtotal {
   text-align: right;
   padding: 5%;
 }
+
 header > .cart-box .cart-window .checkout,
 header > .cart-box .cart-window .view-cart {
   width: 95%;
@@ -85,7 +86,7 @@ header > .cart-box .cart-window .cart-item {
   display: grid;
   grid-template-columns: 3fr 6fr 1fr;
   padding: 5% 2%;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 2px solid lightgray;
 }
 header > .cart-box .cart-window .cart-item img {
   width: 100%;
@@ -102,16 +103,24 @@ header > .cart-box .cart-window .cart-item .price {
   text-align: right;
   margin-top: 15%;
 }
-header > .cart-box .cart-window .quantity {
+header > .cart-box .cart-window .quantity,
+header > .cart-box .cart-window .size {
   display: block;
   margin-top: 5%;
 }
+
 header > .cart-box .cart-window .fa-xmark {
   color: brown;
   cursor: pointer;
 }
 header > .cart-box .cart-window .cancel {
   text-align: right;
+  display: inline-block;
+  height: fit-content;
+  width: fit-content;
+  /* border: 1px solid red; */
+  padding: 3px;
+  margin-left: 20px;
 }
 .No-of-items {
   /* content: var(--after-content); */
@@ -129,3 +138,6 @@ header > .cart-box .cart-window .cancel {
   right: 20%;
   /* we have to make it dynamically appear and disappear by js */
 }
+/* header > .cart-box .cart-window #size {
+  display: inline;
+} */
