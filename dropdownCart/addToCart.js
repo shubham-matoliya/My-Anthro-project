@@ -1,6 +1,9 @@
 let cart = document.querySelectorAll("button.quickshop");
 
 let number = JSON.parse(localStorage.getItem("cartNumbers")) || 0;
+if (number == 0) {
+  document.querySelector(".subtotal").innerText = "subtotal: " + number;
+}
 document.querySelector(".No-of-items").textContent = number;
 let cartArray = [];
 
@@ -110,22 +113,6 @@ document.querySelector(".cart-box").addEventListener("mouseout", function () {
   return 0;
 });
 
-// function addToCart(event) {
-//   let cartObj = {
-//     image: event.target.parentNode.parentNode
-//       .querySelector(".out>img")
-//       .getAttribute("src")
-//       .toString(),
-//     price: event.target.parentNode.parentNode.querySelector(".price").innerText,
-//     product_id: event.target.parentNode.parentNode.getAttribute("id"),
-//     productName:
-//       event.target.parentNode.parentNode.querySelector(".productName")
-//         .innerText,
-//   };
-
-//   increaseQty(cartObj);
-// }
-
 function increaseQty(cartObj) {
   // console.log(cartObj);
   let cartArray = JSON.parse(localStorage.getItem("inCart"));
@@ -193,7 +180,7 @@ function displayCart(cartArray) {
   sum = localStorage.setItem("subtotal", Number(0));
 
   sub = Number(localStorage.getItem("subtotal"));
-
+  document.querySelector(".subtotal").innerText = "subtotal: " + sub;
   document.querySelector(".cart-wrapper").innerHTML = "";
   realCart.forEach(function (elem) {
     let cart = document.createElement("div");
@@ -264,14 +251,14 @@ function displayCart(cartArray) {
       sub = sub + elem.productPrice * elem.productQuantity;
       let subtotal = document.querySelector(".subtotal");
       subtotal.innerText = "subtotal: " + sub;
-      sum = localStorage.setItem("subtotal", sub);
+      localStorage.setItem("subtotal", sub);
     }
-    if (elem.productQuantity == 0) {
-      sub = sub + elem.productPrice * elem.productQuantity;
-      let subtotal = document.querySelector(".subtotal");
-      subtotal.innerText = "subtotal: " + sub;
-      sum = localStorage.setItem("subtotal", sub);
-    }
+    // if (elem.productQuantity == 0) {
+    //   sub = sub + elem.productPrice * elem.productQuantity;
+    //   let subtotal = document.querySelector(".subtotal");
+    //   subtotal.innerText = "subtotal: " + sub;
+    //   localStorage.setItem("subtotal", sub);
+    // }
   });
 }
 
@@ -282,8 +269,8 @@ function deletecart(event) {
   // console.log(num);
   localStorage.setItem("cartNumbers", num);
   document.querySelector(".No-of-items").textContent = num;
-  let price =
-    event.target.parentNode.parentNode.querySelector(".price").innerText;
+  // let price =
+  //   event.target.parentNode.parentNode.querySelector(".price").innerText;
   let size =
     event.target.parentNode.parentNode.querySelector("#size").innerText;
 
@@ -297,8 +284,8 @@ function deletecart(event) {
 
       localStorage.setItem("inCart", JSON.stringify(cartArray));
       if (Number(cartArray[i].productQuantity) == 0) {
-        deleteit(item);
         cartArray.splice(i, 1);
+        item.remove();
         localStorage.setItem("inCart", JSON.stringify(cartArray));
       }
     }
@@ -307,8 +294,4 @@ function deletecart(event) {
   cartArray = JSON.parse(localStorage.getItem("inCart"));
 
   displayCart(cartArray);
-}
-
-function deleteit(item) {
-  item.innerHTML = "";
 }
